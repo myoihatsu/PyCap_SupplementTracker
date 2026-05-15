@@ -9,6 +9,11 @@ import math
 #* logged in
 #* =================================================================================
 def auto_deduct(days_passed):
+    """Automatically deducts supplement quantities based on days passed.
+
+    Args:
+        days_passed (int): The number of days to deduct consumption for.
+    """
     a_d_data = load_from_json('data.json')
 
     print("\n")
@@ -43,6 +48,15 @@ def auto_deduct(days_passed):
 #* function - calculate when to restock supplement
 #* =================================================================================
 def when_to_restock(consumption_days,avg_delivery_time=4):
+    """Calculates the estimated date to restock supplements.
+
+    Args:
+        consumption_days (int): The number of days current stock will last.
+        avg_delivery_time (int, optional): Average days for delivery. Defaults to 4.
+
+    Returns:
+        str: A message indicating when to restock.
+    """
     today = date.today()
     
     days_to_restock = consumption_days - avg_delivery_time
@@ -64,6 +78,11 @@ def when_to_restock(consumption_days,avg_delivery_time=4):
 #* function - overwrite date in user_info.json to earlier date
 #* =================================================================================
 def overwrite_date(overwrite_date):
+    """Overwrites the last login date in user_info.json.
+
+    Args:
+        overwrite_date (str): The new date string (YYYY-MM-DD).
+    """
 
     datedata = load_from_json('user_info.json')
 
@@ -83,6 +102,8 @@ def overwrite_date(overwrite_date):
 #* function - check and compare time from last login to current local time
 #* =================================================================================
 def time_check():
+    """Checks the time since last login and triggers auto-deduction if needed.
+    """
     user_data = load_from_json('user_info.json')
 
     #This is local time

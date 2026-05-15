@@ -8,6 +8,15 @@ import json, math
 #* function - calculate consumption days left 
 #* =================================================================================
 def total_consumption_days(current_quantity,dosage):
+    """Calculates the total days the current quantity of a supplement will last.
+
+    Args:
+        current_quantity (float): The current amount of the supplement.
+        dosage (float): The daily dosage.
+
+    Returns:
+        int: The number of days remaining.
+    """
     if current_quantity == 0:
         return 0
     try:
@@ -21,6 +30,8 @@ def total_consumption_days(current_quantity,dosage):
 #* function - display current stock 
 #* =================================================================================
 def display_current_stock():
+    """Displays the current stock of all supplements and their restock status.
+    """
 
     try:
         stock_data  = load_from_json('data.json')
@@ -64,6 +75,12 @@ def display_current_stock():
 #* function - get supplement info to be passed to add_supplement()
 #* =================================================================================
 def get_supplement_info():
+    """Prompts the user for information about a new supplement.
+
+    Returns:
+        tuple: A tuple containing (name, type, initial_qty, dosage, current_qty, remarks),
+               or None if the operation was cancelled.
+    """
     print("=== Beginning adding new supplement.")
     print("Insert new supplement info. At anypoint, insert exactly XXC to cancel.\n")
 
@@ -127,6 +144,8 @@ def get_supplement_info():
 #* function - add new Supplements
 #* =================================================================================
 def add_new_supplement():
+    """Adds a new supplement to the inventory.
+    """
 
     input_result = get_supplement_info()
     if input_result is None:
@@ -162,6 +181,8 @@ def add_new_supplement():
 #* function - edit existing supplements attribute
 #* =================================================================================
 def edit_existing_supplement():
+    """Edits an attribute of an existing supplement in the inventory.
+    """
     
     dl = load_from_json('data.json')
     display_id = generate_id(dl)
@@ -269,6 +290,8 @@ def edit_existing_supplement():
 #* function - correcting_current_qty() for when user missed to consume supplement
 #* =================================================================================
 def correcting_current_qty():
+    """Adjusts the current quantity of a supplement if the user forgot to log its consumption.
+    """
     
     #connect
     z_data = load_from_json('data.json')
@@ -320,6 +343,12 @@ def correcting_current_qty():
 # todo: time parameter will be updated later when I integrate time module aka if this time this, then this
 #* =================================================================================
 def welcome_screen(username,time="Morning"):
+    """Greets and welcomes the user.
+
+    Args:
+        username (str): The name of the user.
+        time (str, optional): The time of day. Defaults to "Morning".
+    """
     print("=== Welcome =======================")
     print(f"Good {time}, {username}.")
     print("Make sure to be responsible and consistent with your supplement consumption.")
@@ -331,6 +360,8 @@ def welcome_screen(username,time="Morning"):
 #* function - display a list of menu 
 #* =================================================================================
 def display_menu():
+    """Displays the main menu and handles user selection.
+    """
     print("=== MENU ==========================")
     print("Operational Menu, insert number only:")
     print("1. Add supplement\n2. Edit existing supplement\n3. Delete supplement\n4. Forgot to take supplements (We do a bit of time travelling)\n5. Re-display List\n6. Exit-- Good Bye\n7. Credits\n8. Overwrite date(only if you're prompted to do so and you want to do so)")
@@ -359,6 +390,8 @@ def display_menu():
 #* function - delete certain supplement
 #* =================================================================================
 def delete_supp():
+    """Deletes a selected supplement from the inventory.
+    """
     dl= load_from_json('data.json')
     display_id = generate_id(dl)
     print("=== Delete supplement? ============")

@@ -2,10 +2,7 @@ import json
 from functions import *
 from time_auto import *
 def main():
-
-
-    """
-    
+    """Main function to run the Supplement Tracker application.
     """
     time_check()
     welcome_screen("Fizz")

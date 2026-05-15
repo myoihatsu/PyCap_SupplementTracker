@@ -3,12 +3,29 @@
 #* Small functions
 #* =================================================================================
 def validate_XXC(user_input):
+    """Checks if the user input is "XXC" to cancel the operation.
+
+    Args:
+        user_input (str): The input from the user.
+
+    Returns:
+        bool: True if input is "XXC", False otherwise.
+    """
     if user_input == "XXC":
         print("\n\n== Previous Operation Cancelled. ==\n\n")
         return True
     return False
 
 def get_n_validate_numerical_input(msg="Enter option number: ",range=0):
+    """Gets and validates a numerical input from the user.
+
+    Args:
+        msg (str): The prompt message for the user.
+        range (int): The maximum allowed value (inclusive). 0 means no range check.
+
+    Returns:
+        str: The validated numerical input or special commands "XXC"/"XSM".
+    """
     if range == 0:
         while True:
             user_input = input(f"{msg}")
@@ -44,6 +61,14 @@ def get_n_validate_numerical_input(msg="Enter option number: ",range=0):
 #* function get user input
 #* =================================================================================
 def get_id_or_menu_input(menu_range):
+    """Gets a menu selection from the user and validates it.
+
+    Args:
+        menu_range (int): The number of options in the menu.
+
+    Returns:
+        int: The selected menu ID, or None if cancelled.
+    """
     
     while True:
         get_menu_id=None
@@ -66,6 +91,14 @@ def get_id_or_menu_input(menu_range):
 #generate id to make supplement selection easier across multiple functons
 #
 def generate_id(supplement_dict):
+    """Generates a mapping of IDs to supplement names for easier selection.
+
+    Args:
+        supplement_dict (dict): The dictionary containing supplement data.
+
+    Returns:
+        dict: A dictionary mapping integer IDs to supplement names.
+    """
     id_to_name = {}
     count = 1
 

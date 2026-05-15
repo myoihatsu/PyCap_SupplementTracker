@@ -16,7 +16,7 @@
     "Life Extension Neuro Mag": {
         "Type": "Pill/Capsule/Tablet",
         "Initial Quantity": 120.0,
-        "Current Quantity": 141.0,
+        "Current Quantity": 0,
         "Dosage": 3.0,
         "Remarks": "Enhances cognitive function"
     },
@@ -30,14 +30,14 @@
     "Vitamin K2": {
         "Type": "Pill/Capsule/Tablet",
         "Initial Quantity": 1000.0,
-        "Current Quantity": 670.0,
+        "Current Quantity": 180.0,
         "Dosage": 10.0,
         "Remarks": "Ole"
     },
     "1": {
         "Type": "Liquid(ml)",
         "Initial Quantity": 1.0,
-        "Current Quantity": 1.0,
+        "Current Quantity": 0,
         "Dosage": 1.0,
         "Remarks": "1"
     }

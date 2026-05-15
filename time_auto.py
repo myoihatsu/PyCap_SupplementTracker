@@ -1,5 +1,6 @@
 from datetime import datetime, date, timedelta
 from load_dump_json import *
+from helper_functions import *
 import math
 
 
@@ -77,22 +78,34 @@ def when_to_restock(consumption_days,avg_delivery_time=4):
 #* =================================================================================
 #* function - overwrite date in user_info.json to earlier date
 #* =================================================================================
-def overwrite_date(overwrite_date):
-    """Overwrites the last login date in user_info.json.
-
-    Args:
-        overwrite_date (str): The new date string (YYYY-MM-DD).
+def overwrite_date():
+    """Overwrites the last login date in user_info.json based on user input.
     """
 
     datedata = load_from_json('user_info.json')
 
-    datedata["Last Login"] = overwrite_date
+    print("!!! Overwriting Last Login Date !!!")
+    print("Format MUST be YYYY-MM-DD (e.g. 2024-05-15)")
+    print("Insert exactly XXC to cancel.\n")
 
-    try:
-        dump_to_json('user_info.json',datedata)
-        print(f"Successfully overwrite date.\n\n")  
-    except (FileNotFoundError, json.JSONDecodeError) as e:
-        print(f"Error: {e}")
+    while True:
+        new_date = input("Insert new Last Login date: ")
+        
+        if validate_XXC(new_date):
+            return
+
+        try:
+            #validate format
+            datetime.strptime(new_date, "%Y-%m-%d")
+            datedata["Last Login"] = new_date
+            dump_to_json('user_info.json',datedata)
+            print(f"Successfully overwrite date to {new_date}.\n\n")  
+            break
+        except ValueError:
+            print("Invalid date format! Use YYYY-MM-DD only and make sure it's a real date!!\n")
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            print(f"Error: {e}")
+            break
 
 
 
